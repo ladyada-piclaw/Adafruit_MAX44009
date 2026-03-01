@@ -68,26 +68,24 @@ void setup() {
 void loop() {
   float lux = max44009.readLux();
 
-  Serial.print(F("Lux: "));
-  if (isnan(lux)) {
-    Serial.print(F("ERROR"));
-  } else {
-    Serial.print(lux);
-  }
-
   // Check the physical INT pin first (LOW = interrupt asserted)
   bool pinLow = (digitalRead(INT_PIN) == LOW);
 
   // Then check register status (note: reading this clears the interrupt!)
   bool regStatus = max44009.getInterruptStatus();
 
-  if (pinLow || regStatus) {
-    Serial.print(F(" ** INTERRUPT - pin:"));
-    Serial.print(pinLow ? F("LOW") : F("HIGH"));
-    Serial.print(F(" reg:"));
-    Serial.print(regStatus ? F("SET") : F("CLEAR"));
-  }
+  if (!isnan(lux)) {
+    Serial.print(F("Lux: "));
+    Serial.print(lux);
 
-  Serial.println();
+    if (pinLow || regStatus) {
+      Serial.print(F(" ** INTERRUPT - pin:"));
+      Serial.print(pinLow ? F("LOW") : F("HIGH"));
+      Serial.print(F(" reg:"));
+      Serial.print(regStatus ? F("SET") : F("CLEAR"));
+    }
+
+    Serial.println();
+  }
   delay(500);
 }
