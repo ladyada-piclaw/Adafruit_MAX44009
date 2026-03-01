@@ -17,17 +17,6 @@ Adafruit_MAX44009 max44009;
 int passed = 0;
 int failed = 0;
 
-void test(const __FlashStringHelper *name, bool condition) {
-  Serial.print(name);
-  Serial.print(F(": "));
-  if (condition) {
-    Serial.println(F("PASS"));
-    passed++;
-  } else {
-    Serial.println(F("FAIL"));
-    failed++;
-  }
-}
 
 void setup() {
   Serial.begin(115200);
@@ -144,3 +133,15 @@ summary:
 }
 
 void loop() { delay(1000); }
+
+void test(const __FlashStringHelper *name, bool condition) {
+  Serial.print(name);
+  Serial.print(F(": "));
+  if (condition) {
+    Serial.println(F("PASS"));
+    passed++;
+  } else {
+    Serial.println(F("FAIL"));
+    failed++;
+  }
+}

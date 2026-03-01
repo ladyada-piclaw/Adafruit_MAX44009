@@ -15,49 +15,10 @@ Adafruit_MAX44009 max44009;
 int passed = 0;
 int failed = 0;
 
-void test(const __FlashStringHelper *name, bool condition) {
-  Serial.print(name);
-  Serial.print(F(": "));
-  if (condition) {
-    Serial.println(F("PASS"));
-    passed++;
-  } else {
-    Serial.println(F("FAIL"));
-    failed++;
-  }
-}
 
 // Read raw lux registers as a 16-bit value for exact comparison
-uint16_t readRawLux() {
-  Wire.beginTransmission(0x4A);
-  Wire.write(0x03);
-  Wire.endTransmission(false);
-  Wire.requestFrom((uint8_t)0x4A, (uint8_t)2);
-  uint8_t h = Wire.read();
-  uint8_t l = Wire.read();
-  return ((uint16_t)h << 8) | l;
-}
 
 // Toggle CDR and measure how long until raw lux registers change
-unsigned long measureUpdateRate(unsigned long timeoutMs) {
-  uint16_t initial = readRawLux();
-
-  bool currentCDR = max44009.getCurrentDivisionRatio();
-  max44009.setCurrentDivisionRatio(!currentCDR);
-
-  unsigned long start = millis();
-  while ((millis() - start) < timeoutMs) {
-    uint16_t raw = readRawLux();
-    if (raw != initial) {
-      unsigned long elapsed = millis() - start;
-      max44009.setCurrentDivisionRatio(currentCDR);
-      return elapsed;
-    }
-    delay(2);
-  }
-  max44009.setCurrentDivisionRatio(currentCDR);
-  return 0;
-}
 
 void setup() {
   Serial.begin(115200);
@@ -143,3 +104,45 @@ void setup() {
 }
 
 void loop() { delay(1000); }
+
+void test(const __FlashStringHelper *name, bool condition) {
+  Serial.print(name);
+  Serial.print(F(": "));
+  if (condition) {
+    Serial.println(F("PASS"));
+    passed++;
+  } else {
+    Serial.println(F("FAIL"));
+    failed++;
+  }
+}
+
+uint16_t readRawLux() {
+  Wire.beginTransmission(0x4A);
+  Wire.write(0x03);
+  Wire.endTransmission(false);
+  Wire.requestFrom((uint8_t)0x4A, (uint8_t)2);
+  uint8_t h = Wire.read();
+  uint8_t l = Wire.read();
+  return ((uint16_t)h << 8) | l;
+}
+
+unsigned long measureUpdateRate(unsigned long timeoutMs) {
+  uint16_t initial = readRawLux();
+
+  bool currentCDR = max44009.getCurrentDivisionRatio();
+  max44009.setCurrentDivisionRatio(!currentCDR);
+
+  unsigned long start = millis();
+  while ((millis() - start) < timeoutMs) {
+    uint16_t raw = readRawLux();
+    if (raw != initial) {
+      unsigned long elapsed = millis() - start;
+      max44009.setCurrentDivisionRatio(currentCDR);
+      return elapsed;
+    }
+    delay(2);
+  }
+  max44009.setCurrentDivisionRatio(currentCDR);
+  return 0;
+}

@@ -17,71 +17,10 @@ Adafruit_MAX44009 max44009;
 int passed = 0;
 int failed = 0;
 
-void test(const __FlashStringHelper *name, bool condition) {
-  Serial.print(name);
-  Serial.print(F(": "));
-  if (condition) {
-    Serial.println(F("PASS"));
-    passed++;
-  } else {
-    Serial.println(F("FAIL"));
-    failed++;
-  }
-}
 
-uint16_t readRawLux() {
-  Wire.beginTransmission(0x4A);
-  Wire.write(0x03);
-  Wire.endTransmission(false);
-  Wire.requestFrom((uint8_t)0x4A, (uint8_t)2);
-  uint8_t h = Wire.read();
-  uint8_t l = Wire.read();
-  return ((uint16_t)h << 8) | l;
-}
 
 // Toggle CDR and measure how long until raw lux registers change.
 // Takes median of 3 runs for stability.
-unsigned long measureUpdateRate(max44009_integration_time_t intTime,
-                                unsigned long settleMs,
-                                unsigned long timeoutMs) {
-  unsigned long times[3];
-
-  for (int run = 0; run < 3; run++) {
-    max44009.setIntegrationTime(intTime);
-    delay(settleMs);
-
-    uint16_t initial = readRawLux();
-    bool currentCDR = max44009.getCurrentDivisionRatio();
-    max44009.setCurrentDivisionRatio(!currentCDR);
-
-    unsigned long start = millis();
-    while ((millis() - start) < timeoutMs) {
-      uint16_t raw = readRawLux();
-      if (raw != initial) {
-        times[run] = millis() - start;
-        break;
-      }
-      delay(1);
-    }
-    if ((millis() - start) >= timeoutMs)
-      times[run] = 0;
-
-    max44009.setCurrentDivisionRatio(currentCDR);
-    delay(settleMs); // settle before next run
-  }
-
-  // Sort and return median
-  for (int i = 0; i < 2; i++) {
-    for (int j = i + 1; j < 3; j++) {
-      if (times[j] < times[i]) {
-        unsigned long tmp = times[i];
-        times[i] = times[j];
-        times[j] = tmp;
-      }
-    }
-  }
-  return times[1]; // median
-}
 
 void setup() {
   Serial.begin(115200);
@@ -154,3 +93,67 @@ void setup() {
 }
 
 void loop() { delay(1000); }
+
+void test(const __FlashStringHelper *name, bool condition) {
+  Serial.print(name);
+  Serial.print(F(": "));
+  if (condition) {
+    Serial.println(F("PASS"));
+    passed++;
+  } else {
+    Serial.println(F("FAIL"));
+    failed++;
+  }
+}
+
+uint16_t readRawLux() {
+  Wire.beginTransmission(0x4A);
+  Wire.write(0x03);
+  Wire.endTransmission(false);
+  Wire.requestFrom((uint8_t)0x4A, (uint8_t)2);
+  uint8_t h = Wire.read();
+  uint8_t l = Wire.read();
+  return ((uint16_t)h << 8) | l;
+}
+
+unsigned long measureUpdateRate(max44009_integration_time_t intTime,
+                                unsigned long settleMs,
+                                unsigned long timeoutMs) {
+  unsigned long times[3];
+
+  for (int run = 0; run < 3; run++) {
+    max44009.setIntegrationTime(intTime);
+    delay(settleMs);
+
+    uint16_t initial = readRawLux();
+    bool currentCDR = max44009.getCurrentDivisionRatio();
+    max44009.setCurrentDivisionRatio(!currentCDR);
+
+    unsigned long start = millis();
+    while ((millis() - start) < timeoutMs) {
+      uint16_t raw = readRawLux();
+      if (raw != initial) {
+        times[run] = millis() - start;
+        break;
+      }
+      delay(1);
+    }
+    if ((millis() - start) >= timeoutMs)
+      times[run] = 0;
+
+    max44009.setCurrentDivisionRatio(currentCDR);
+    delay(settleMs); // settle before next run
+  }
+
+  // Sort and return median
+  for (int i = 0; i < 2; i++) {
+    for (int j = i + 1; j < 3; j++) {
+      if (times[j] < times[i]) {
+        unsigned long tmp = times[i];
+        times[i] = times[j];
+        times[j] = tmp;
+      }
+    }
+  }
+  return times[1]; // median
+}

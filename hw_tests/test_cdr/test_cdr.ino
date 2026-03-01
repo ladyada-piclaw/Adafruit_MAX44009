@@ -14,27 +14,7 @@ Adafruit_MAX44009 max44009;
 int passed = 0;
 int failed = 0;
 
-void test(const __FlashStringHelper *name, bool condition) {
-  Serial.print(name);
-  Serial.print(F(": "));
-  if (condition) {
-    Serial.println(F("PASS"));
-    passed++;
-  } else {
-    Serial.println(F("FAIL"));
-    failed++;
-  }
-}
 
-uint16_t readRawLux() {
-  Wire.beginTransmission(0x4A);
-  Wire.write(0x03);
-  Wire.endTransmission(false);
-  Wire.requestFrom((uint8_t)0x4A, (uint8_t)2);
-  uint8_t h = Wire.read();
-  uint8_t l = Wire.read();
-  return ((uint16_t)h << 8) | l;
-}
 
 void setup() {
   Serial.begin(115200);
@@ -111,3 +91,25 @@ void setup() {
 }
 
 void loop() { delay(1000); }
+
+void test(const __FlashStringHelper *name, bool condition) {
+  Serial.print(name);
+  Serial.print(F(": "));
+  if (condition) {
+    Serial.println(F("PASS"));
+    passed++;
+  } else {
+    Serial.println(F("FAIL"));
+    failed++;
+  }
+}
+
+uint16_t readRawLux() {
+  Wire.beginTransmission(0x4A);
+  Wire.write(0x03);
+  Wire.endTransmission(false);
+  Wire.requestFrom((uint8_t)0x4A, (uint8_t)2);
+  uint8_t h = Wire.read();
+  uint8_t l = Wire.read();
+  return ((uint16_t)h << 8) | l;
+}
