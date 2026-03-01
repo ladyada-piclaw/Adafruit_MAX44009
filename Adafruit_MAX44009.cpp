@@ -81,16 +81,16 @@ bool Adafruit_MAX44009::begin(uint8_t addr, TwoWire* wire) {
  * @return Lux value as float, or NAN if sensor is in overrange condition
  */
 float Adafruit_MAX44009::readLux() {
-  uint8_t buffer[2];
-  uint8_t reg = MAX44009_REG_LUX_HIGH;
-
-  // Sequential read: register address, then 2 bytes (repeated START, no STOP)
-  if (!_i2c_dev->write_then_read(&reg, 1, buffer, 2)) {
+  // 2-byte sequential read starting at LUX_HIGH (repeated START, no STOP)
+  Adafruit_BusIO_Register lux_reg =
+      Adafruit_BusIO_Register(_i2c_dev, MAX44009_REG_LUX_HIGH, 2, MSBFIRST);
+  uint16_t raw;
+  if (!lux_reg.read(&raw)) {
     _overrange = false;
     return NAN;
   }
 
-  uint8_t exponent = (buffer[0] >> 4) & 0x0F;
+  uint8_t exponent = (raw >> 12) & 0x0F;
 
   // Check for overrange (exponent 0xF)
   if (exponent == 0x0F) {
@@ -101,7 +101,7 @@ float Adafruit_MAX44009::readLux() {
   _overrange = false;
 
   // Full 8-bit mantissa: upper 4 bits from LUX_HIGH, lower 4 from LUX_LOW
-  uint8_t mantissa = ((buffer[0] & 0x0F) << 4) | (buffer[1] & 0x0F);
+  uint8_t mantissa = ((raw >> 4) & 0xF0) | (raw & 0x0F);
 
   // Lux = 2^exponent * mantissa * 0.045
   return (float)(1 << exponent) * (float)mantissa * MAX44009_LUX_MULTIPLIER;
