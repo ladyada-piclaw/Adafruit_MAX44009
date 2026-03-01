@@ -122,11 +122,9 @@ void test(const __FlashStringHelper *name, bool condition) {
 }
 
 uint16_t readRawLux() {
-  Wire.beginTransmission(0x4A);
-  Wire.write(0x03);
-  Wire.endTransmission(false);
-  Wire.requestFrom((uint8_t)0x4A, (uint8_t)2);
-  uint8_t h = Wire.read();
-  uint8_t l = Wire.read();
-  return ((uint16_t)h << 8) | l;
+  Adafruit_I2CDevice i2c(0x4A);
+  Adafruit_BusIO_Register lux_reg(&i2c, 0x03, 2, MSBFIRST);
+  uint16_t raw;
+  lux_reg.read(&raw);
+  return raw;
 }
