@@ -4,8 +4,8 @@
  * Written by Limor 'ladyada' Fried with assistance from Claude Code for
  * Adafruit Industries. MIT license, check license.txt for more information
  *
- * Sets upper and lower lux thresholds, enables interrupts, and monitors
- * both the INT pin (D2) and the interrupt status register.
+ * Reads ambient light level, then sets thresholds slightly above and below.
+ * Shade or shine the sensor to trigger an interrupt!
  *
  * Wiring: MAX44009 INT pin -> D2 (open-drain, needs external pull-up)
  */
@@ -34,21 +34,29 @@ void setup() {
 
   Serial.println(F("MAX44009 found!"));
 
-  // Set thresholds - interrupt triggers when lux goes outside this window
-  max44009.setLowerThreshold(50.0);
+  // Read current ambient level
+  float ambient = max44009.readLux();
+  Serial.print(F("Ambient lux: "));
+  Serial.println(ambient);
+
+  // Set thresholds ~25% below and above ambient
+  float lower = ambient * 0.75;
+  float upper = ambient * 1.25;
+
+  max44009.setLowerThreshold(lower);
   // Range: 0.045 to 188,000 lux
   Serial.print(F("Lower threshold: "));
   Serial.print(max44009.getLowerThreshold());
   Serial.println(F(" lux"));
 
-  max44009.setUpperThreshold(500.0);
+  max44009.setUpperThreshold(upper);
   // Range: 0.045 to 188,000 lux
   Serial.print(F("Upper threshold: "));
   Serial.print(max44009.getUpperThreshold());
   Serial.println(F(" lux"));
 
-  // Set threshold timer (value * 100ms)
-  max44009.setThresholdTimer(10);
+  // Set threshold timer to 100ms (1 = 1 * 100ms)
+  max44009.setThresholdTimer(1);
   // 0 = immediate, 255 = 25.5 seconds (default)
   Serial.print(F("Threshold timer: "));
   Serial.print(max44009.getThresholdTimer() * 100);
@@ -62,6 +70,7 @@ void setup() {
   // Clear any pending interrupt
   max44009.getInterruptStatus();
 
+  Serial.println(F("\nShade or shine the sensor to trigger an interrupt!"));
   Serial.println();
 }
 
