@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['max44009_5falt_5faddress',['MAX44009_ALT_ADDRESS',['../_adafruit___m_a_x44009_8h.html#a54cc143a7fbba9009fc6b0f1e69bf86f',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fdefault_5faddress',['MAX44009_DEFAULT_ADDRESS',['../_adafruit___m_a_x44009_8h.html#ad68c3aa00fc98896e3c99e353dee9843',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fintegration_5f100ms',['MAX44009_INTEGRATION_100MS',['../_adafruit___m_a_x44009_8h.html#a2c667368a9aefd0d74fb1c1c1e252750ad2dda832ef65d42a59b078b146aabdad',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fintegration_5f12_5f5ms',['MAX44009_INTEGRATION_12_5MS',['../_adafruit___m_a_x44009_8h.html#a2c667368a9aefd0d74fb1c1c1e252750a0df77e007ce1b9c17a5169e59e90ae43',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fintegration_5f200ms',['MAX44009_INTEGRATION_200MS',['../_adafruit___m_a_x44009_8h.html#a2c667368a9aefd0d74fb1c1c1e252750ac5107d826a5b83474b06d9ae2098d927',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fintegration_5f25ms',['MAX44009_INTEGRATION_25MS',['../_adafruit___m_a_x44009_8h.html#a2c667368a9aefd0d74fb1c1c1e252750afbe350219a3ae87f62feee3499e16267',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fintegration_5f400ms',['MAX44009_INTEGRATION_400MS',['../_adafruit___m_a_x44009_8h.html#a2c667368a9aefd0d74fb1c1c1e252750a7d46bb22f3b986676defa024bbc697e1',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fintegration_5f50ms',['MAX44009_INTEGRATION_50MS',['../_adafruit___m_a_x44009_8h.html#a2c667368a9aefd0d74fb1c1c1e252750a38908e4376bb2e4d6676c7407449038e',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fintegration_5f6_5f25ms',['MAX44009_INTEGRATION_6_25MS',['../_adafruit___m_a_x44009_8h.html#a2c667368a9aefd0d74fb1c1c1e252750a1deff1c482fa5251ad4aa4ce25e1cbea',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fintegration_5f800ms',['MAX44009_INTEGRATION_800MS',['../_adafruit___m_a_x44009_8h.html#a2c667368a9aefd0d74fb1c1c1e252750a64ec8ae1e25a0be8a65884c6e799aba9',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fintegration_5ftime_5ft',['max44009_integration_time_t',['../_adafruit___m_a_x44009_8h.html#a2c667368a9aefd0d74fb1c1c1e252750',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5flux_5fmultiplier',['MAX44009_LUX_MULTIPLIER',['../_adafruit___m_a_x44009_8h.html#abdbefe55f1a0a1faa973bb9f7439e9fe',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fmode_5fcontinuous',['MAX44009_MODE_CONTINUOUS',['../_adafruit___m_a_x44009_8h.html#a41c3703593b0d6106350346af3473acda4e6a3f289852e4bad44bc5775f1a5472',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fmode_5fdefault',['MAX44009_MODE_DEFAULT',['../_adafruit___m_a_x44009_8h.html#a41c3703593b0d6106350346af3473acdad4f46a06623dfb8868dec11db4c7dee2',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fmode_5fmanual',['MAX44009_MODE_MANUAL',['../_adafruit___m_a_x44009_8h.html#a41c3703593b0d6106350346af3473acda642756ac4f6c33ec681843c61e03fd26',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fmode_5fmanual_5fcontinuous',['MAX44009_MODE_MANUAL_CONTINUOUS',['../_adafruit___m_a_x44009_8h.html#a41c3703593b0d6106350346af3473acda276179633808b5a376edf4e8ca0ad606',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5fmode_5ft',['max44009_mode_t',['../_adafruit___m_a_x44009_8h.html#a41c3703593b0d6106350346af3473acd',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5freg_5fconfig',['MAX44009_REG_CONFIG',['../_adafruit___m_a_x44009_8h.html#ae2891cd3a08fc9c9f66dbb4f8d3d252f',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5freg_5fint_5fenable',['MAX44009_REG_INT_ENABLE',['../_adafruit___m_a_x44009_8h.html#ae57b8508254bb3d60bb7efe368c52cda',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5freg_5fint_5fstatus',['MAX44009_REG_INT_STATUS',['../_adafruit___m_a_x44009_8h.html#abf70a8884d8d5e7ec6536c9b98013f59',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5freg_5flux_5fhigh',['MAX44009_REG_LUX_HIGH',['../_adafruit___m_a_x44009_8h.html#a3ecc4b1c383d22dd6cc902d4c485e61d',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5freg_5flux_5flow',['MAX44009_REG_LUX_LOW',['../_adafruit___m_a_x44009_8h.html#a5ecd689cb3324875f03a795f3ce5c222',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5freg_5fthresh_5flower',['MAX44009_REG_THRESH_LOWER',['../_adafruit___m_a_x44009_8h.html#ab718e2c6804a6611ca8af4c23c3fab0c',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5freg_5fthresh_5ftimer',['MAX44009_REG_THRESH_TIMER',['../_adafruit___m_a_x44009_8h.html#a31a173156910019e1096b18266c53125',1,'Adafruit_MAX44009.h']]],
+  ['max44009_5freg_5fthresh_5fupper',['MAX44009_REG_THRESH_UPPER',['../_adafruit___m_a_x44009_8h.html#ac3a3262caaf7fa3f1599574b3a2be2e0',1,'Adafruit_MAX44009.h']]]
+];
