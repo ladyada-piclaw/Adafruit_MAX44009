@@ -90,7 +90,6 @@ class Adafruit_MAX44009 {
   bool begin(uint8_t addr = MAX44009_DEFAULT_ADDRESS, TwoWire* wire = &Wire);
 
   float readLux();
-  float readLuxFast();
   bool isOverrange();
 
   void setIntegrationTime(max44009_integration_time_t time);

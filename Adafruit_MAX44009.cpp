@@ -95,38 +95,6 @@ float Adafruit_MAX44009::readLux() {
 }
 
 /**
- * @brief Read lux value using only the high byte (faster, lower resolution)
- *
- * Uses only 4-bit mantissa for faster reads when high precision is not needed.
- *
- * @return Lux value as float, or NAN if sensor is in overrange condition
- */
-float Adafruit_MAX44009::readLuxFast() {
-  Adafruit_BusIO_Register lux_high_reg =
-      Adafruit_BusIO_Register(_i2c_dev, MAX44009_REG_LUX_HIGH, 1);
-
-  uint8_t lux_high;
-  if (!lux_high_reg.read(&lux_high)) {
-    _overrange = false;
-    return NAN;
-  }
-
-  uint8_t exponent = (lux_high >> 4) & 0x0F;
-
-  // Check for overrange (exponent 0xF)
-  if (exponent == 0x0F) {
-    _overrange = true;
-    return NAN;
-  }
-
-  _overrange = false;
-  uint8_t mantissa = lux_high & 0x0F;
-
-  // Quick formula: 2^exponent * mantissa * 0.72
-  return (float)(1 << exponent) * (float)mantissa * 0.72;
-}
-
-/**
  * @brief Check if the last reading was an overrange condition
  * @return true if sensor was saturated, false otherwise
  */

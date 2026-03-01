@@ -16,7 +16,6 @@ max44009_mode_t	KEYWORD1
 
 begin	KEYWORD2
 readLux	KEYWORD2
-readLuxFast	KEYWORD2
 isOverrange	KEYWORD2
 setIntegrationTime	KEYWORD2
 getIntegrationTime	KEYWORD2

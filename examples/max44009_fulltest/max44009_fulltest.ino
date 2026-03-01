@@ -122,22 +122,13 @@ void setup() {
 
 void loop() {
   float lux = max44009.readLux();
-  float luxFast = max44009.readLuxFast();
 
   Serial.print(F("Lux:"));
   if (isnan(lux)) {
-    Serial.print(F("OVERRANGE"));
+    Serial.println(F("OVERRANGE"));
   } else {
-    Serial.print(lux);
+    Serial.println(lux);
   }
 
-  Serial.print(F("\tFast:"));
-  if (isnan(luxFast)) {
-    Serial.print(F("OVERRANGE"));
-  } else {
-    Serial.print(luxFast);
-  }
-
-  Serial.println();
   delay(100);
 }

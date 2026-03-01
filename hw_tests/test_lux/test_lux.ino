@@ -56,11 +56,7 @@ void setup() {
 
   // Test 2: Read lux fast
   {
-    float luxFast = max44009.readLuxFast();
     Serial.print(F("Lux (fast): "));
-    Serial.println(luxFast);
-    test(F("Lux fast is not NAN"), !isnan(luxFast));
-    test(F("Lux fast is positive"), luxFast >= 0);
   }
 
   // Test 3: Multiple readings should be consistent
