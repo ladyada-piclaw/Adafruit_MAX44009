@@ -131,6 +131,13 @@ typedef enum {
   MAX44009_INTEGRATION_12_5MS = 0b110,  // 12.5ms - manual mode only
   MAX44009_INTEGRATION_6_25MS = 0b111,  // 6.25ms - manual mode only
 } max44009_integration_time_t;
+
+typedef enum {
+  MAX44009_MODE_DEFAULT           = 0x00,  // CONT=0, MANUAL=0 — auto-ranging, 800ms cycle
+  MAX44009_MODE_CONTINUOUS        = 0x80,  // CONT=1, MANUAL=0 — auto-ranging, fast updates
+  MAX44009_MODE_MANUAL            = 0x40,  // CONT=0, MANUAL=1 — manual gain/time, 800ms cycle
+  MAX44009_MODE_MANUAL_CONTINUOUS = 0xC0,  // CONT=1, MANUAL=1 — manual gain/time, fast updates
+} max44009_mode_t;
 ```
 
 | TIM | Integration Time | Notes |
@@ -416,11 +423,13 @@ public:
   void setIntegrationTime(max44009_integration_time_t time);
   max44009_integration_time_t getIntegrationTime();
   
-  void setContinuousMode(bool enabled);
-  bool getContinuousMode();
-  
-  void setManualMode(bool enabled);
-  bool getManualMode();
+  void setMode(max44009_mode_t mode);
+  max44009_mode_t getMode();
+
+
+
+
+
   
   void setCurrentDivisionRatio(bool divide);  // true = divide by 8
   bool getCurrentDivisionRatio();

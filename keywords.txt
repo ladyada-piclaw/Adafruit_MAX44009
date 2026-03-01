@@ -1,0 +1,54 @@
+#######################################
+# Syntax Coloring Map For Adafruit_MAX44009
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Adafruit_MAX44009	KEYWORD1
+max44009_integration_time_t	KEYWORD1
+max44009_mode_t	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+readLux	KEYWORD2
+readLuxFast	KEYWORD2
+isOverrange	KEYWORD2
+setIntegrationTime	KEYWORD2
+getIntegrationTime	KEYWORD2
+setMode	KEYWORD2
+getMode	KEYWORD2
+setCurrentDivisionRatio	KEYWORD2
+getCurrentDivisionRatio	KEYWORD2
+enableInterrupt	KEYWORD2
+isInterruptEnabled	KEYWORD2
+getInterruptStatus	KEYWORD2
+setUpperThreshold	KEYWORD2
+getUpperThreshold	KEYWORD2
+setLowerThreshold	KEYWORD2
+getLowerThreshold	KEYWORD2
+setThresholdTimer	KEYWORD2
+getThresholdTimer	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+MAX44009_DEFAULT_ADDRESS	LITERAL1
+MAX44009_ALT_ADDRESS	LITERAL1
+MAX44009_INTEGRATION_800MS	LITERAL1
+MAX44009_INTEGRATION_400MS	LITERAL1
+MAX44009_INTEGRATION_200MS	LITERAL1
+MAX44009_INTEGRATION_100MS	LITERAL1
+MAX44009_INTEGRATION_50MS	LITERAL1
+MAX44009_INTEGRATION_25MS	LITERAL1
+MAX44009_INTEGRATION_12_5MS	LITERAL1
+MAX44009_INTEGRATION_6_25MS	LITERAL1
+MAX44009_MODE_DEFAULT	LITERAL1
+MAX44009_MODE_CONTINUOUS	LITERAL1
+MAX44009_MODE_MANUAL	LITERAL1
+MAX44009_MODE_MANUAL_CONTINUOUS	LITERAL1
