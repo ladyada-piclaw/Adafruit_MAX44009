@@ -66,4 +66,4 @@ void loop() {
 
 ## License
 
-BSD License — see [license.txt](license.txt) for details.
+MIT License — see [license.txt](license.txt) for details.
