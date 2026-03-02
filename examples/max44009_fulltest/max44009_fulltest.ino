@@ -104,8 +104,6 @@ void setup() {
     Serial.println(max44009.getCurrentDivisionRatio() ? F("1/8 (divided)")
                                                       : F("Full current"));
 
-    // Switch back to auto continuous mode for readings
-    max44009.setMode(MAX44009_MODE_CONTINUOUS);
   } else {
     Serial.println(F("\n(Integration time and CDR are auto-managed)"));
   }
